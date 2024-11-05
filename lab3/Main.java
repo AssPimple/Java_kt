@@ -1,78 +1,24 @@
-package lab2;
+package lab3;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Scanner;
 
-class Employee {
-    private String name;
-    private Department department;
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int x = scanner.nextInt();
+        switch (x){
+            case 1:
+                // Тестирование с использованием различных входных данных
+                Time time1 = new Time(34056); // 9 часов, 26 минут, 36 секунд
+                Time time2 = new Time(25, 0, 0); // 1 час (25 часов – это больше 24, отбрасывается)
+                Time time3 = new Time(0, 500, 0); // 01:15:00 (75 минут – это 1 час 15 минут)
+                Time time4 = new Time(23, 59, 59); // 23:59:59 (максимально возможное время)
 
-    public Employee(String name, Department department) {
-        this.name = name;
-        this.department = department;
-        if (department != null) {
-            department.addEmployee(this); // Добавляем сотрудника в отдел
+                // Вывод результата на экран
+                System.out.println("Время 1 (34056 секунд): " + time1); // ожидание: 09:26:36
+                System.out.println("Время 2 (25 часов): " + time2); // ожидание: 01:00:00 (т.к. 25 часов отбрасываются)
+                System.out.println("Время 3 (0 часов, 504 минут): " + time3); // ожидание: 01:15:00 (75 минут)
+                System.out.println("Время 4 (23 часа, 59 минут, 59 секунд): " + time4); // ожидание: 23:59:59
         }
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Department getDepartment() {
-        return department;
-    }
-
-    public String toString() {
-        if (department.getManager() != null) {
-            // Если текущий сотрудник - менеджер, то его начальником будет он сам
-            if (department.getManager().equals(this)) {
-                return name + " начальник отдела " + department.getName() + ", начальник которого " + name;
-            } else {
-                return name + " работает в отделе " + department.getName() + ", начальник которого " + department.getManager().getName();
-            }
-        } else {
-            return name + " работает в отделе " + department.getName() + ", начальник которого нет";
-        }
-    }
-}
-
-
-class Department {
-    private String name;
-    private Employee manager;
-    private List<Employee> employees;
-
-    public Department(String name, Employee manager) {
-        this.name = name;
-        this.manager = manager;
-        this.employees = new ArrayList<>();
-        if (manager != null) { // добавляем менеджера в список сотрудников
-            employees.add(manager);
-        }
-    }
-    public void setManager(Employee manager) {
-        this.manager = manager;
-        if (manager != null) {
-            this.addEmployee(manager); // Убедитесь, что менеджер добавлен в список сотрудников
-        }
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Employee getManager() {
-        return manager;
-    }
-
-    public void addEmployee(Employee employee) {
-        if (!employees.contains(employee)) {
-            employees.add(employee);
-        }
-    }
-
-    public List<Employee> getEmployees() {
-        return employees;
     }
 }

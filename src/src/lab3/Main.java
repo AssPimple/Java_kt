@@ -8,35 +8,14 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите номер задания");
-        System.out.println("1. Время ");
-        System.out.println("2. Сотрудники");
-        System.out.println("3. (Не решено) ");
-        System.out.println("4. Трехмерные точки ");
-        System.out.println("5. Птички");
+        System.out.println("1. Сотрудники");
+        System.out.println("2. Трехмерные точки ");
+        System.out.println("3. Птички");
         System.out.println("6. Пение птичек");
         System.out.println("7. Сравнение точек");
         int x = scanner.nextInt();
         switch (x){
             case 1:
-                Time time1 = new Time(3661); // 1 час, 1 минута, 1 секунда
-                System.out.println(time1); // 01:01:01
-
-                Time time2 = new Time(25, 61, 70); // 25 часов, 61 минута, 70 секунд
-                System.out.println(time2); // 02:02:10
-
-                time1.setSeconds(100000); // 100000 секунд
-                System.out.println(time1); // 13:46:40
-
-                time1.setHours(5); // Установить 5 часов
-                System.out.println(time1); // Пример изменения
-
-                try {
-                    time1.setMinutes(-1); // Вызывает исключение
-                } catch (RuntimeException e) {
-                    System.out.println(e.getMessage()); // Количество минут не может быть отрицательным.
-                }
-                break;
-            case 2:
                 Department itDepartment = new Department("IT", null);
                 Department itDepartment1 = new Department("IT1", null);// Создание отдела без начальника
                 Employee petrov = new Employee("Петров", itDepartment);
@@ -48,7 +27,7 @@ public class Main {
                 System.out.println(kozlov);
                 System.out.println(sidorov);
                 break;
-            case 4:
+            case 2:
                 // Создание трехмерной точки
                 Point3D point3D1 = new Point3D(1.0, 2.0, 3.0);
                 Point3D point3D2 = new Point3D(4.0, 5.0, 6.0);
@@ -60,7 +39,7 @@ public class Main {
                 System.out.println("Point 3D 2: " + point3D2);
                 System.out.println("Point 3D 3: " + point3D3);
                 break;
-            case 5:
+            case 3:
                 Bird sparrow = new Sparrow();
                 Bird cuckoo = new Cuckoo();
                 Bird parrot = new Parrot("Привет как дела? Как настроение?");
@@ -70,7 +49,7 @@ public class Main {
                 cuckoo.sing();
                 parrot.sing();
                 break;
-            case 6:
+            case 4:
                 List<Bird> birds = new ArrayList<>(); // Создаем список для птиц
                 birds.add(new Cuckoo());
                 birds.add(new Sparrow()); // Добавляем воробьев
@@ -85,9 +64,9 @@ public class Main {
 
                 singAllBirds(birds); // Вызываем метод пения для всех птиц
                 break;
-            case 7:
-                Point p1 = new Point(1.0, 2.0);
-                Point p2 = new Point(1.0, 2.0);
+            case 5:
+                Point p1 = new Point(-1.0, 2.0);
+                Point p2 = new Point(-1.0, 2.0);
                 Point p3 = new Point(2.0, 3.0);
                 System.out.println("Точки:");
                 System.out.println("1 Точка:\n x: " + p1.getX() + "|y: " + p1.getY());

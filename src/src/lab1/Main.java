@@ -1,4 +1,4 @@
-// импорт библиотеки для ввода данных
+package lab1;// импорт библиотеки для ввода данных
 import java.util.Scanner;
 // основной класс
 public class Main {

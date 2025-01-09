@@ -22,7 +22,7 @@ public class Main {
             case 1:
                 // Создаем дроби
                 Fraction fraction1 = new Fraction(1, 2); // дробь 1/2
-                Fraction fraction2 = new Fraction(2, 4); // дробь 2/4
+                Fraction fraction2 = new Fraction(2, -4); // дробь 2/4
 
                 // Выводим дроби
                 System.out.println("Дробь 1: " + fraction1); // Вывод: Дробь 1: 1/2
@@ -37,43 +37,49 @@ public class Main {
 
                 // Устанавливаем новый числитель для дроби 2
                 fraction2.setNumerator(3);
+                fraction2.setDenominator(-3);
                 System.out.println("Новое значение дроби 2: " + fraction2); // Вывод: 3/4
                 System.out.println("Значение дроби 2: " + fraction2.getValue()); // Вывод: 0.75
                 break;
             case 2:
-                Cat kitty = new Cat("Мурзик"); // Создаем кота с именем "Мурзик"
 
-                Funs.meowsCare(kitty); // Передаем кота в метод
+                Cat cat = new Cat("Мурзик");
+                MeowCounter counter = new MeowCounter(cat);
 
-                // Получаем и выводим количество мяуканий
-                // Приводим к типу Cat
-                System.out.println(kitty + " мяукал " + kitty.getMeowCount() + " раз(а)"); // Выводим результат
+                counter.meow(); // Мурзик: мяу!
+                counter.meow();
+                counter.meow();
+                counter.meow();
+                counter.meow();
+                // Мурзик: мяу!
+
+                System.out.println(counter); // Счетчик мяуканий для Кот Мурзик: 2
                 break;
             case 3:
-                // Исходные списки
-                List<Integer> L1 = new ArrayList<>();
-                List<Integer> L2 = new ArrayList<>();
+                List<Serializable> L1 = new ArrayList<>();
+                List<Serializable> L2 = new ArrayList<>();
 
-                // Заполнение списков для примера
+                // Пример заполнения списков
                 L1.add(1);
-                L1.add(2);
-                L1.add(3);
+                L1.add("two");
+                L1.add(3.0);
                 L1.add(4);
-                L1.add(5);
+                L1.add("five");
 
                 L2.add(4);
-                L2.add(5);
-                L2.add(6);
+                L2.add("five");
+                L2.add(6.0);
                 L2.add(7);
-                L2.add(8);
+                L2.add("eight");
 
-                // Вызываем метод для нахождения пересечения
-                List<Integer> L = findCommonElements(L1, L2);
+                // Вызов метода для нахождения пересечения
+                List<Serializable> commonElements = findCommonElements(L1, L2);
 
-                // Выводим результат
-                System.out.println("Список L, содержащий элементы, которые входят одновременно в оба списка L1 и L2: " + L);
+                // Вывод результата
+                System.out.println("Общие элементы: " + commonElements);
+                break;
             case 4:
-                String filePath = "C:\\Users\\Pimple\\IdeaProjects\\untitled\\lab5\\src\\text.txt";  // Замените на путь к вашему файлу
+                String filePath = "C:\\Users\\Pimple\\IdeaProjects\\untitled\\lab4\\src\\lab5\\text.txt";  // Замените на путь к вашему файлу
 
                 // Используем HashSet для хранения уникальных букв
                 Set<Character> uniqueLetters = new HashSet<>();
@@ -96,17 +102,19 @@ public class Main {
                 } catch (IOException e) {
                     System.out.println("Ошибка при чтении файла: " + e.getMessage());
                 }
+                break;
             case 5:
                 // Исходный список
-                List<Integer> L12 = List.of(1, 2, 3, 4); // Пример списка, замените на ваши данные
+                List<Serializable> L12 = List.of(1, "lo", -3, 0.4, "ds"); // Пример списка, замените на ваши данные
 
                 // Построение очереди
-                List<Integer> queue = buildQueue(L12);
+                List<Serializable> queue = buildQueue(L12);
 
                 // Вывод результата
                 System.out.println(queue);
+                break;
             case 6:
-                String filePath1 = "C:\\Users\\Pimple\\IdeaProjects\\untitled\\lab5\\src\\text1.txt"; // Укажите путь к вашему файлу
+                String filePath1 = "C:\\Users\\Pimple\\IdeaProjects\\untitled\\lab4\\src\\lab5\\text1.txt"; // Укажите путь к вашему файлу
 
                 try {
                     // Чтение данных из файла и обработка
@@ -131,9 +139,10 @@ public class Main {
 
     }
     // Метод для нахождения общих элементов в двух списках
-    public static List<Integer> findCommonElements(List<Integer> L1, List<Integer> L2) {
-        Set<Integer> set1 = new HashSet<>(L1); // Преобразуем первый список в множество
-        Set<Integer> set2 = new HashSet<>(L2); // Преобразуем второй список в множество
+    // Метод для нахождения пересечения списков любого типа
+    public static <T> ArrayList<Serializable> findCommonElements(List<Serializable> L1, List<Serializable> L2) {
+        Set<Serializable> set1 = new HashSet<>(L1); // Преобразуем первый список в множество
+        Set<Serializable> set2 = new HashSet<>(L2); // Преобразуем второй список в множество
         set1.retainAll(set2); // Оставляем в первом множестве только те элементы, которые есть во втором
 
         return new ArrayList<>(set1); // Возвращаем результат в виде списка
@@ -142,8 +151,9 @@ public class Main {
     private static boolean isRussianLetter(char ch) {
         return (ch >= 'а' && ch <= 'я') || (ch >= 'А' && ch <= 'Я');
     }
-    public static List<Integer> buildQueue(List<Integer> L) {
-        List<Integer> queue = new ArrayList<>();
+
+    public static List<Serializable> buildQueue(List<Serializable> L) {
+        List<Serializable> queue = new ArrayList<>();
 
         // Добавляем элементы из списка L
         queue.addAll(L);

@@ -4,7 +4,6 @@ package lab5;
 public class Fraction implements FractionOperations {
     private int numerator;    // Числитель
     private int denominator;  // Знаменатель
-    private Double cachedValue; // Для кэширования вещественного значения
 
     // Конструктор
     public Fraction(int numerator, int denominator) {
@@ -19,7 +18,6 @@ public class Fraction implements FractionOperations {
             this.numerator = numerator;
             this.denominator = denominator;
         }
-        this.cachedValue = null; // Инициализируем кэш как null
     }
 
     // Получение строкового представления
@@ -31,17 +29,13 @@ public class Fraction implements FractionOperations {
     // Получение вещественного значения
     @Override
     public double getValue() {
-        if (cachedValue == null) { // Если значение не закэшировано
-            cachedValue = (double) numerator / denominator; // Кэшируем результат
-        }
-        return cachedValue; // Возвращаем закэшированное значение
+        return (double) numerator / denominator; // Возвращаем вещественное значение
     }
 
     // Установка числителя
     @Override
     public void setNumerator(int numerator) {
         this.numerator = numerator;
-        this.cachedValue = null; // Сброс кэша при изменении
     }
 
     // Установка знаменателя
@@ -57,17 +51,13 @@ public class Fraction implements FractionOperations {
         } else {
             this.denominator = denominator;
         }
-        this.cachedValue = null; // Сброс кэша при изменении
     }
 
     // Переопределение equals для сравнения дробей
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true; // Сравнение с самим собой
-        if (!(obj instanceof Fraction)) return false; // Если это не дробь, возвращаем false
-        Fraction other = (Fraction) obj; // Приводим тип
+        if (!(obj instanceof Fraction other)) return false; // Если это не дробь, возвращаем false
         return this.numerator * other.denominator == this.denominator * other.numerator; // Сравнение
     }
-
-
 }

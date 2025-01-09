@@ -104,6 +104,7 @@ public class Main {
                 Storage<String> stringStorageWithHello = new Storage<>("hello");
                 String alternativeForHello = "hello world"; // Альтернативное значение
                 System.out.println("Значение: " + stringStorageWithHello.getItem(alternativeForHello));
+                break;
             case 3:
                 try {
                     // Создаем Коробку для хранения трехмерной точки
@@ -111,13 +112,14 @@ public class Main {
 
                     // Добавляем трехмерную точку (2.1, 5.0, 7.3) в коробку
                     addPoint3DToBox(box1, 2.1, 5.0, 7.3);
-                    addPoint3DToBox(box1, 2.2, 5.3, -7.3);
+
                     // Выводим хранимую точку
                     Point3D point = box1.getItem();
                     System.out.println("Сохраненная трехмерная точка: " + point);
                 } catch (Exception e) {
                     System.out.println("Ошибка: " + e.getMessage());
                 }
+                break;
             case 4:
                 // Пример 1: строки в длины
                 List<String> strings = Arrays.asList("qwerty", "asdfg", "zx");
@@ -133,6 +135,7 @@ public class Main {
                 List<int[]> arrays = Arrays.asList(new int[]{1, 2, 3}, new int[]{-1, -2, -3}, new int[]{5, 4, 6});
                 List<Integer> maxValues = transform(arrays, array -> Arrays.stream(array).max().orElse(Integer.MIN_VALUE));
                 System.out.println(maxValues); // [3, -1, 6]
+                break;
             case 5:
                 // Пример 1: фильтрация строк с длиной менее 3 символов
                 List<String> strings1 = Arrays.asList("qwerty", "asdfg", "zx");
@@ -156,6 +159,7 @@ public class Main {
                 // Фильтруем списки, оставляя только те, у которых нет положительных элементов
                 List<List<Integer>> filteredArrayLists = filter(arrayLists, array -> array.stream().noneMatch(n -> n > 0));
                 System.out.println(filteredArrayLists); // [[-1, -2, -3], [-1, -2]]
+                break;
             case 6:
                 // Пример 1: разбиваем на положительные и отрицательные числа
                 List<Integer> numbers2 = Arrays.asList(1, -3, 7);
